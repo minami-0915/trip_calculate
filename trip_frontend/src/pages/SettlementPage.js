@@ -1,13 +1,14 @@
 import './SettlementPage_UI.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, getDocs } from 'firebase/firestore';
 import { useEffect, useMemo, useState } from 'react';
 
 function SettlementPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
+  const [nameMap, setNameMap] = useState({});
 
   useEffect(() => {
     const ref = collection(db, `groups/${id}/expenses`);
@@ -15,6 +16,20 @@ function SettlementPage() {
       setExpenses(snapshot.docs.map(doc => doc.data()));
     });
     return unsubscribe;
+  }, [id]);
+
+  // ✅ UID → 名前のマップを取得
+  useEffect(() => {
+    const fetchMembers = async () => {
+      const membersRef = collection(db, `groups/${id}/members`);
+      const snapshot = await getDocs(membersRef);
+      const map = {};
+      snapshot.docs.forEach(doc => {
+        map[doc.id] = doc.data().name || doc.id;
+      });
+      setNameMap(map);
+    };
+    fetchMembers();
   }, [id]);
 
   const settlements = useMemo(() => {
@@ -62,7 +77,7 @@ function SettlementPage() {
         <ul className="settlement-list">
           {settlements.map((s, i) => (
             <li key={i}>
-              <strong>{s.from}</strong> → <strong>{s.to}</strong>：¥{s.amount.toLocaleString()}
+              <strong>{nameMap[s.from] || s.from}</strong> → <strong>{nameMap[s.to] || s.to}</strong>：¥{s.amount.toLocaleString()}
             </li>
           ))}
         </ul>

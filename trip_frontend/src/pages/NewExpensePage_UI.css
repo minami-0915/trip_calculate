@@ -16,7 +16,7 @@
   border: 1px solid #ccc;
 }
 
-.expense-form-container button {
+.submit-button {
   margin-top: 1rem;
   padding: 0.7rem 2rem;
   background-color: #0FAFAA;
@@ -26,6 +26,22 @@
   cursor: pointer;
 }
 
-.expense-form-container button:hover {
+.submit-button:hover {
   background-color: #0c9999;
+}
+
+.back-button {
+  background-color: #f0f0f0;
+  color: #555;
+  border: 1px solid #bbb;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
 }

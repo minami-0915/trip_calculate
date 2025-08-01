@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { db, auth } from '../firebase';
-import { collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc
+} from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import './GroupListPage_UI.css';
@@ -18,9 +26,15 @@ function GroupListPage() {
         return;
       }
       setUser(currentUser);
-      const q = query(collection(db, 'groups'), where('members', 'array-contains', currentUser.uid));
+      const q = query(
+        collection(db, 'groups'),
+        where('members', 'array-contains', currentUser.uid)
+      );
       const querySnapshot = await getDocs(q);
-      const groupList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const groupList = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
       setGroups(groupList);
     });
 
@@ -30,12 +44,27 @@ function GroupListPage() {
   const handleCreateGroup = async () => {
     if (!groupName.trim() || !user) return;
 
-    const docRef = await addDoc(collection(db, 'groups'), {
-      name: groupName,
-      members: [user.uid],
-    });
+    try {
+      const docRef = await addDoc(collection(db, 'groups'), {
+        name: groupName,
+        members: [user.uid]
+      });
+      navigate(`/groups/${docRef.id}`);
+    } catch (error) {
+      console.error('グループ作成に失敗しました:', error);
+    }
+  };
 
-    navigate(`/groups/${docRef.id}`);
+  const deleteGroup = async (groupId) => {
+    if (!window.confirm('このグループを本当に削除しますか？')) return;
+
+    try {
+      await deleteDoc(doc(db, 'groups', groupId));
+      setGroups((prev) => prev.filter((group) => group.id !== groupId));
+    } catch (error) {
+      console.error('グループ削除に失敗しました:', error);
+      alert('削除できませんでした');
+    }
   };
 
   const handleLogout = async () => {
@@ -51,22 +80,12 @@ function GroupListPage() {
   return (
     <div className="group-list-container">
       <div style={{ textAlign: 'right' }}>
-        <button className="logout-button" onClick={handleLogout}>ログアウト</button>
+        <button className="logout-button" onClick={handleLogout}>
+          ログアウト
+        </button>
       </div>
 
       <h2>グループ一覧</h2>
-
-      <div style={{ marginTop: '2rem' }}>
-        {groups.map((group) => (
-          <div
-            className="group-card"
-            key={group.id}
-            onClick={() => navigate(`/groups/${group.id}`)}
-          >
-            {group.name}
-          </div>
-        ))}
-      </div>
 
       <div className="group-form">
         <input
@@ -78,7 +97,25 @@ function GroupListPage() {
         <button onClick={handleCreateGroup}>グループを作成</button>
       </div>
 
-
+      <div style={{ marginTop: '2rem' }}>
+        {groups.map((group) => (
+          <div
+            className="group-card"
+            key={group.id}
+            style={{ position: 'relative' }}
+          >
+            <div onClick={() => navigate(`/groups/${group.id}`)}>
+              {group.name}
+            </div>
+            <button
+              className="delete-button"
+              onClick={() => deleteGroup(group.id)}
+            >
+              削除
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
