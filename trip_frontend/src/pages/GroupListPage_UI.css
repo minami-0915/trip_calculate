@@ -1,0 +1,61 @@
+.group-list-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.group-card {
+  background-color: #f7fafa;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.group-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.group-form {
+  margin-top: 2rem;
+}
+
+.group-form input {
+  padding: 0.5rem;
+  width: 60%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.group-form button {
+  padding: 0.5rem 1rem;
+  margin-left: 10px;
+  border: none;
+  background-color: #0FAFAA;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.group-form button:hover {
+  background-color: #0c9999;
+}
+
+.logout-button {
+  padding: 6px 12px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.logout-button:hover {
+  background-color: #999;
+}

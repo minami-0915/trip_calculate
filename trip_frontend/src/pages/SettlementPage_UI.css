@@ -1,0 +1,21 @@
+.settlement-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.settlement-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.settlement-list li {
+  background-color: #f9fefe;
+  border: 1px solid #cce;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
