@@ -1,0 +1,49 @@
+.home-container {
+  flex: 1;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calendar-section {
+  background-color: #f9fcfc;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-list {
+  margin-top: 1.5rem;
+}
+
+.event-list h4 {
+  margin-bottom: 0.5rem;
+}
+.add-event-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0fafaa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-event-btn:hover {
+  background-color: #0a8a8a;
+}
+
+.event-item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #f1fafa;
+  border-left: 4px solid #0fafaa;
+  border-radius: 5px;
+}
