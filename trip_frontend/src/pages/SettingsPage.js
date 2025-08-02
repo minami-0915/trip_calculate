@@ -43,7 +43,9 @@ function SettingsPage() {
 
   return (
     <div className="settings-container">
-      <h2>設定</h2>
+        <div className="page-title">
+           <h2>設定</h2>
+        </div>
 
       <div>
         <label>表示名：</label>
@@ -66,13 +68,16 @@ function SettingsPage() {
       <button onClick={handleUpdateProfile}>プロフィールを更新</button>
 
       <div className="settings-profile">
-        <h3>現在のプロフィール</h3>
-        <p>名前：{user?.displayName}</p>
-        <img
-          src={user?.photoURL || '/default-icon.png'}
-          alt="アイコン"
-        />
-      </div>
+        <div className="profile-box"> {/* ← このdivを追加 */}
+            <h3>現在のプロフィール</h3>
+            <p>名前：{user?.displayName}</p>
+            <img
+            src={user?.photoURL || '/default-icon.png'}
+            alt="アイコン"
+            />
+        </div>
+    </div>
+
     </div>
   );
 }

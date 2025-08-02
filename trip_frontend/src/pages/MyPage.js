@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import './GroupListPage_UI.css';
+import './MyPage.css';
 
 function GroupListPage() {
   const [groups, setGroups] = useState([]);
@@ -117,8 +117,11 @@ function GroupListPage() {
   };
 
   return (
-    <div className="group-list-container">
-      <h1>マイページ</h1>
+    <div>
+      <div className="group-list-container">
+       <div className="page-header">
+          <h2 >マイページ</h2>
+      </div>
       <h3>参加中のグループ</h3>
       <div style={{ marginTop: '2rem' }}>
         {groups.map((group) => (
@@ -164,6 +167,7 @@ function GroupListPage() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

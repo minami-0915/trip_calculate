@@ -37,10 +37,10 @@ function Sidebar() {
 
       <h3>メニュー</h3>
       <ul>
-        <li onClick={() => navigate('/home')}>ホーム</li>
-        <li onClick={() => navigate('/mypage')}>マイページ</li>
-        <li onClick={() => navigate('/groups')}>グループ一覧</li>
-        <li onClick={() => navigate('/settings')}>設定</li>
+        <li onClick={() => navigate('/mypage')}>👤マイページ</li>
+        <li onClick={() => navigate('/groups')}>≡ グループ一覧</li>
+        <li onClick={() => navigate('/home')}>🗓 カレンダー</li>
+        <li onClick={() => navigate('/settings')}>⚙ 設定</li>
         <li>
           <button className="logout-button" onClick={handleLogout}>
             ログアウト

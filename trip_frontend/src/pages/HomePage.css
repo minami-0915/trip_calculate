@@ -1,12 +1,27 @@
-/* HomePage.css */
-
-.calendar-section {
+/* カレンダー全体のラッパー（左右に分割） */
+.calendar-layout {
+  display: flex;
+  gap: 2rem;
+  margin-left: 220px;
   padding: 2rem;
-  margin-left: 220px; /* Sidebarの幅と合わせる */
-  background-color: #f9fcfc;
+  background-color: transparent;
   min-height: 100vh;
+  color: #000;
 }
 
+/* カレンダー本体 */
+.calendar-box {
+  flex: 1;
+  margin-left: 240px;
+}
+
+/* カレンダー日付 */
+.react-calendar {
+  border: none;
+  font-family: sans-serif;
+}
+
+/* 追加ボタン */
 .add-event-btn {
   margin-top: 1rem;
   padding: 10px 16px;
@@ -24,12 +39,21 @@
   background-color: #0c8f8f;
 }
 
-.event-list {
-  margin-top: 2rem;
-  background-color: #ffffff;
+/* 日ごとの予定リスト表示 */
+.daily-event-list {
+  flex: 1;
+  width: 30%;           /* ← 40%から縮小 */
+  max-width: 320px;     /* ← 最大幅を指定（お好みで調整） */
+  height: 40%;
+  background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: none;
+}
+
+
+.daily-event-list h4 {
+  margin-bottom: 1rem;
 }
 
 .event-item {
@@ -57,7 +81,7 @@
 
 /* モーダル本体 */
 .modal {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 2rem;
   border-radius: 10px;
   width: 90%;
@@ -68,6 +92,7 @@
 .modal h4 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
+  color: #000;
 }
 
 .modal input,
@@ -79,6 +104,8 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
 }
 
 /* モーダルのボタン */
@@ -107,4 +134,20 @@
 
 .modal .cancel-btn:hover {
   background-color: #bbb;
+}
+
+.event-list {
+  background-color: white;
+  width: 30%;           /* ← 40%から縮小 */
+  max-width: 320px;     /* ← 最大幅を指定（お好みで調整） */
+  height: 40%;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: none;
+  max-width: 400px;
+}
+
+
+.event-list h4 {
+  font-weight: bold;
 }

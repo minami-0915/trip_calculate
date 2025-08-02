@@ -2,17 +2,10 @@
   max-width: 600px;
   margin: 50px auto;
   padding: 2rem;
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .group-form {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+  margin-top: 2rem;
 }
 
 .group-form input {
@@ -24,73 +17,57 @@
 
 .group-form button {
   padding: 0.5rem 1rem;
+  margin-left: 10px;
+  border: none;
   background-color: #0FAFAA;
   color: white;
-  border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .group-form button:hover {
   background-color: #0c9999;
 }
 
+/* グループカード全体を整列・左右に配置 */
 .group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #f7fafa;
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  text-align: left;
-  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.group-card p {
-  margin: 0.5rem 0;
+.group-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.group-card button {
-  padding: 6px 12px;
-  margin-top: 8px;
-  background-color: #0FAFAA;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.group-card button:hover {
-  background-color: #0c9999;
-}
-
-.action-button {
-  background-color: #0FAFAA;
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border-radius: 6px;
-  text-decoration: none;
+/* 名前エリア */
+.group-name {
+  flex-grow: 1;
+  text-align: center;
   font-weight: bold;
-  transition: background-color 0.2s ease;
-  border: none;
   cursor: pointer;
 }
 
-.action-button:hover {
-  background-color: #0c9999;
-}
-
-.detail-button {
-  margin-top: 8px;
-  background-color: #0FAFAA;
-  color: white;
+/* 削除ボタン（赤系） */
+.delete-button {
+  background-color: #fa6482 !important;
+  color: white !important;
   border: none;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
-.detail-button:hover {
-  background-color: #0c9999;
+.delete-button:hover {
+  background-color: #e53e61 !important;
 }

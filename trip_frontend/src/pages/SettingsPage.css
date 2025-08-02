@@ -2,18 +2,23 @@
   padding: 2rem;
   max-width: 600px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: transparent; /* 背景は透明のまま */
+  box-shadow: none;
+  border: none;
+  color: #000; /* 全体の文字色を黒に設定 */
 }
 
 .settings-container h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
+  color: #000; /* タイトルも黒 */
 }
 
 .settings-container label {
   display: block;
   font-weight: bold;
   margin-bottom: 0.3rem;
+  color: #000;
 }
 
 .settings-container input[type="text"] {
@@ -23,6 +28,8 @@
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #000;
 }
 
 .settings-container button {
@@ -44,6 +51,7 @@
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
+  color: #000;
 }
 
 .settings-profile img {
@@ -53,3 +61,43 @@
   object-fit: cover;
   margin-top: 0.5rem;
 }
+
+.profile-box {
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  text-align: center;
+  width: 300px;         /* 横幅を指定 */
+  margin-left: 0;       /* 必要に応じて左寄せ */
+}
+
+
+.profile-box img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 0.8rem;
+}
+
+.page-title-bar {
+  width: 100%;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 軽い影で浮かせる */
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #0FAFAA; /* リーフグリーンの印象的な下線 */
+}
+
+.page-title-bar h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333; /* 落ち着いた黒に近い色 */
+  text-align: left;
+}
+
+
+
