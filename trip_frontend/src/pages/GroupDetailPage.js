@@ -149,7 +149,7 @@ function GroupDetailPage() {
 
         <div className="group-detail-actions">
           <button className="action-button" onClick={() => navigate(`/groups/${groupId}/new-expense`)}>
-            支払いを追加する
+            + 支払いを追加する
           </button>
 
           <button className="action-button" onClick={() => navigate(`/groups/${groupId}/settlement`)}>
@@ -200,7 +200,7 @@ function GroupDetailPage() {
             value={newMemberName}
             onChange={(e) => setNewMemberName(e.target.value)}
           />
-          <button type="submit">追加</button>
+          <button type="submit">+ 追加</button>
         </form>
       </div>
 

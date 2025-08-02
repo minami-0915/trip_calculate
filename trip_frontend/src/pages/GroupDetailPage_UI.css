@@ -118,15 +118,3 @@
   list-style: none;
   padding-left: 0;
 }
-
-.action-button {
-  background-color: #0FAFAA;
-  color: white;
-  padding: 0.7rem 1.2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-  border: none;
-  cursor: pointer;
-}

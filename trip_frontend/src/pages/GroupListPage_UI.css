@@ -5,22 +5,6 @@
   text-align: center;
 }
 
-.group-card {
-  background-color: #f7fafa;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.group-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
 .group-form {
   margin-top: 2rem;
 }
@@ -40,39 +24,51 @@
   color: white;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .group-form button:hover {
   background-color: #0c9999;
 }
 
-.logout-button {
-  padding: 6px 12px;
-  background-color: #ccc;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* グループカード全体を整列・左右に配置 */
+.group-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7fafa;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.group-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* 名前エリア */
+.group-name {
+  flex-grow: 1;
+  text-align: center;
   font-weight: bold;
-  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.logout-button:hover {
-  background-color: #999;
-}
-
+/* 削除ボタン（赤系） */
 .delete-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #fa6482;
-  color: white;
+  background-color: #fa6482 !important;
+  color: white !important;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .delete-button:hover {
-  background-color: #e53e61;
+  background-color: #e53e61 !important;
 }

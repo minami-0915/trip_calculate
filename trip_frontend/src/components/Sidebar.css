@@ -31,3 +31,40 @@
 .sidebar li:hover {
   background-color: #e0f7f9;
 }
+
+.logout-button {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: 20px;
+  background-color: #0FAFAA; /* 一貫したテーマ色（例: ボタンと同じ） */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #0c8f8f; /* 少し濃い色でホバー効果 */
+}
+
+.user-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.user-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0FAFAA;
+}
+
+

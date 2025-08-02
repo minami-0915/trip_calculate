@@ -102,10 +102,10 @@ function NewExpensePage() {
           ))}
         </div>
 
-        <button className="submit-button" type="submit">追加</button>
+        <button className="submit-button" type="submit">+ 追加</button>
       </form>
       <button className="back-button" onClick={() => navigate(`/groups/${groupId}`)}>
-        グループ詳細に戻る
+        ← グループ詳細に戻る
       </button>
     </div>
   );

@@ -1,99 +1,171 @@
-// src/pages/MyPage.js
-import React, { useEffect, useState } from 'react';
-import { auth, db } from '../firebase';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { db, auth } from '../firebase';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+  getDoc,
+  setDoc
+} from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import './MyPage.css';
+import './GroupListPage_UI.css';
 
-function MyPage() {
-  const [user, setUser] = useState(null);
+function GroupListPage() {
   const [groups, setGroups] = useState([]);
+  const [groupName, setGroupName] = useState('');
+  const [user, setUser] = useState(null);
+  const [otherUsers, setOtherUsers] = useState([]);
   const [friends, setFriends] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(setUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (!currentUser) {
+        navigate('/login');
+        return;
+      }
+      setUser(currentUser);
+      await fetchGroups(currentUser);
+      await fetchUserFriends(currentUser);
+      await fetchOtherUsers(currentUser);
+    });
     return () => unsubscribe();
-  }, []);
+  }, [navigate]);
 
-  useEffect(() => {
-    if (!user) return;
+  const fetchGroups = async (currentUser) => {
+    const q = query(
+      collection(db, 'groups'),
+      where('members', 'array-contains', currentUser.uid)
+    );
+    const querySnapshot = await getDocs(q);
+    const groupList = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    setGroups(groupList);
+  };
 
-    const fetchGroups = async () => {
-      const groupsSnapshot = await getDocs(collection(db, 'groups'));
-      const userGroups = [];
+  const fetchUserFriends = async (currentUser) => {
+    const userRef = doc(db, 'users', currentUser.uid);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      setFriends(data.friends || []);
+    } else {
+      setFriends([]);
+    }
+  };
 
-      for (const docSnap of groupsSnapshot.docs) {
-        const memberDoc = await getDoc(doc(db, 'groups', docSnap.id, 'members', user.uid));
-        if (memberDoc.exists()) {
-          userGroups.push({ id: docSnap.id, ...docSnap.data() });
-        }
+  const fetchOtherUsers = async (currentUser) => {
+    const usersSnapshot = await getDocs(collection(db, 'users'));
+    const others = usersSnapshot.docs
+      .filter(doc => doc.id !== currentUser.uid)
+      .map(doc => ({ uid: doc.id, ...doc.data() }));
+    setOtherUsers(others);
+  };
+
+  const handleCreateGroup = async () => {
+    if (!groupName.trim() || !user) return;
+    try {
+      const docRef = await addDoc(collection(db, 'groups'), {
+        name: groupName,
+        members: [user.uid]
+      });
+      navigate(`/groups/${docRef.id}`);
+    } catch (error) {
+      console.error('グループ作成に失敗しました:', error);
+    }
+  };
+
+  const deleteGroup = async (groupId) => {
+    if (!window.confirm('このグループを本当に削除しますか？')) return;
+    try {
+      await deleteDoc(doc(db, 'groups', groupId));
+      setGroups((prev) => prev.filter((group) => group.id !== groupId));
+    } catch (error) {
+      console.error('グループ削除に失敗しました:', error);
+      alert('削除できませんでした');
+    }
+  };
+
+  const handleAddFriend = async (friendUid, friendName) => {
+    try {
+      const userRef = doc(db, 'users', user.uid);
+      const userDoc = await getDoc(userRef);
+      const currentData = userDoc.exists() ? userDoc.data() : {};
+      const currentFriends = currentData.friends || [];
+
+      if (!currentFriends.includes(friendUid)) {
+        await setDoc(userRef, {
+          ...currentData,
+          displayName: user.displayName || '',
+          friends: [...currentFriends, friendUid]
+        });
+        setFriends([...currentFriends, friendUid]);
+        alert(`${friendName} を友達に追加しました！`);
+      } else {
+        alert('すでに友達です。');
       }
-      setGroups(userGroups);
-    };
-
-    const fetchFriends = async () => {
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
-      if (userDoc.exists()) {
-        const data = userDoc.data();
-        const friendUIDs = data.friends || [];
-
-        const friendsData = await Promise.all(friendUIDs.map(async (uid) => {
-          const friendDoc = await getDoc(doc(db, 'users', uid));
-          return friendDoc.exists() ? { uid, ...friendDoc.data() } : { uid };
-        }));
-        setFriends(friendsData);
-      }
-    };
-
-    fetchGroups();
-    fetchFriends();
-  }, [user]);
+    } catch (e) {
+      console.error('友達追加に失敗:', e);
+    }
+  };
 
   return (
-    <div className="mypage-container">
-      <h2>マイページ</h2>
+    <div className="group-list-container">
+      <h1>マイページ</h1>
+      <h3>参加中のグループ</h3>
+      <div style={{ marginTop: '2rem' }}>
+        {groups.map((group) => (
+          <div className="group-card" key={group.id}>
+            <div className="group-name">{group.name}</div>
+            <button
+              className="action-button"
+              onClick={() => navigate(`/groups/${group.id}`)}
+            >
+              詳細
+            </button>
+          </div>
+        ))}
+      </div>
 
-      {user && (
-        <div className="profile-box">
-          <p><strong>あなたのUID：</strong> <code>{user.uid}</code></p>
-          <p><strong>表示名：</strong> {user.displayName || '未設定'}</p>
-          <img
-            src={user.photoURL || '/default-icon.png'}
-            alt="アイコン"
-            className="profile-icon"
-          />
-        </div>
-      )}
-
-      <div className="group-section">
-        <h3>参加中のグループ</h3>
-        {groups.length === 0 ? (
-          <p>参加中のグループはありません。</p>
+      <div style={{ marginTop: '3rem' }}>
+        <h3>他のユーザー</h3>
+        {otherUsers.filter(u => !friends.includes(u.uid)).length === 0 ? (
+          <p>追加できるユーザーはいません。</p>
         ) : (
-          groups.map((g) => (
-            <div key={g.id} className="group-card">
-              <p>{g.name}</p>
-              <button onClick={() => navigate(`/groups/${g.id}`)}>詳細へ</button>
+          otherUsers.filter(u => !friends.includes(u.uid)).map((u) => (
+            <div key={u.uid} className="group-card">
+              <p>{u.displayName || '名無し'}（{u.uid}）</p>
+              <button
+                className="action-button"
+                onClick={() => handleAddFriend(u.uid, u.displayName || '名無し')}
+              >
+                + 友達に追加
+              </button>
             </div>
           ))
         )}
       </div>
 
-      <div className="friend-section">
-        <h3>つながったことのある友達</h3>
-        {friends.length === 0 ? (
-          <p>まだ友達はいません。</p>
-        ) : (
-          friends.map((f) => (
-            <div key={f.uid} className="friend-card">
-              <p>{f.displayName || '未登録ユーザー'}（{f.uid}）</p>
-            </div>
-          ))
-        )}
+      <div style={{ marginTop: '3rem' }}>
+        <h3>既に友達のユーザー</h3>
+        {otherUsers.filter(u => friends.includes(u.uid)).map((u) => (
+          <div key={u.uid} className="group-card">
+            <p>{u.displayName || '名無し'}（{u.uid}）</p>
+            <button className="already-friend-button" disabled>
+              友達済み
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-export default MyPage;
+export default GroupListPage;
