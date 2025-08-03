@@ -35,7 +35,7 @@ function LoginPage() {
 
   return (
     <div className="login-container">
-      <h2>旅費割り勘アプリ</h2>
+      <h2>ともたび</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
