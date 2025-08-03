@@ -151,3 +151,18 @@
 .event-list h4 {
   font-weight: bold;
 }
+.delete-btn {
+  margin-top: 5px;
+  padding: 4px 10px;
+  background-color: #f88e3dba;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #f292527b;
+}
+

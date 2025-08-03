@@ -3,6 +3,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { deleteDoc, doc } from 'firebase/firestore';
 import './HomePage.css';
 
 function HomePage() {
@@ -97,8 +98,20 @@ function HomePage() {
     } catch (error) {
       console.error('イベント追加に失敗:', error);
       alert('追加に失敗しました');
-    }
+    };
+
   };
+  const handleDeleteEvent = async (eventId, groupId) => {
+  try {
+    await deleteDoc(doc(db, 'groups', groupId, 'events', eventId));
+    alert('予定を削除しました');
+    // ローカル state からも削除
+    setEvents((prev) => prev.filter((e) => e.id !== eventId));
+  } catch (error) {
+    console.error('削除に失敗:', error);
+    alert('予定の削除に失敗しました');
+  }
+　};
 
   return (
   <div className="calendar-section">
@@ -116,12 +129,18 @@ function HomePage() {
         ) : (
           <ul>
             {filteredEvents.map((e) => (
-              <li key={e.id} className="event-item">
-                <strong>{e.title}</strong>（{e.groupName}）
-                <br />
+    <li key={e.id} className="event-item">
+        <strong>{e.title}</strong>（{e.groupName}）<br />
                 📍 {e.location || '場所未定'}
-              </li>
-            ))}
+        <br />
+    <button
+      className="delete-btn"
+      onClick={() => handleDeleteEvent(e.id, e.groupId)}
+    >
+      削除
+    </button>
+  </li>
+))}
           </ul>
         )}
       </div>
