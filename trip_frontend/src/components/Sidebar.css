@@ -29,7 +29,7 @@
 }
 
 .sidebar li:hover {
-  background-color: #e0f7f9;
+  background-color: #0d9c3328;
 }
 
 .logout-button {
@@ -37,7 +37,7 @@
   width: 100%;
   padding: 10px 16px;
   margin-top: 20px;
-  background-color: #0FAFAA; /* 一貫したテーマ色（例: ボタンと同じ） */
+  background-color: #0d9c33; /* 一貫したテーマ色（例: ボタンと同じ） */
   color: white;
   border: none;
   border-radius: 8px;
@@ -49,7 +49,7 @@
 }
 
 .logout-button:hover {
-  background-color: #0c8f8f; /* 少し濃い色でホバー効果 */
+  background-color: #077b26; /* 少し濃い色でホバー効果 */
 }
 
 .user-icon-container {
@@ -64,7 +64,7 @@
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #0FAFAA;
+  border: 2px solid #0d9c33;
 }
 
 

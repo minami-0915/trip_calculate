@@ -2,7 +2,7 @@
   max-width: 700px;
   margin: 40px auto;
   padding: 1.5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .expense-list {
@@ -10,8 +10,8 @@
 }
 
 .expense-card {
-  background-color: #f2fefc;
-  border: 1px solid #cce7e4;
+  background-color: #138b081c;
+  border: 1px solid #138b084c;
   padding: 1rem;
   border-radius: 10px;
   margin-bottom: 1rem;
@@ -26,7 +26,7 @@
 }
 
 .action-button {
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   padding: 0.7rem 1.2rem;
   border-radius: 6px;
@@ -38,7 +38,7 @@
 }
 
 .action-button:hover {
-  background-color: #0c9999;
+  background-color: #138b084c;
 }
 
 .member-list {
@@ -65,7 +65,7 @@
 }
 
 .member-form button {
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
@@ -75,7 +75,7 @@
 }
 
 .member-form button:hover {
-  background-color: #0c9999;
+  background-color: #138b084c;
 }
 
 .back-button-container {

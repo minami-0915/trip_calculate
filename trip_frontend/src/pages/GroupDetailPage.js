@@ -134,8 +134,8 @@ function GroupDetailPage() {
                   marginLeft: '10px',
                   padding: '0.2rem 0.6rem',
                   fontSize: '0.8rem',
-                  backgroundColor: '#ffefef',
-                  border: '1px solid #dd6666',
+                  backgroundColor: '#f5903271 ',
+                  border: '1px solid #f590327f ',
                   borderRadius: '4px',
                   cursor: 'pointer'
                 }}
@@ -170,8 +170,8 @@ function GroupDetailPage() {
                     marginLeft: '10px',
                     padding: '0.2rem 0.6rem',
                     fontSize: '0.8rem',
-                    backgroundColor: '#ffdddd',
-                    border: '1px solid #ff8888',
+                    backgroundColor: '#f5903271',
+                    border: '1px solid #f590327f',
                     borderRadius: '4px',
                     cursor: 'pointer'
                   }}

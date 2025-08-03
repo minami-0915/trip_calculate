@@ -35,7 +35,7 @@
 .settings-container button {
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   border: none;
   border-radius: 6px;
@@ -44,7 +44,7 @@
 }
 
 .settings-container button:hover {
-  background-color: #0c9999;
+  background-color: #0d9c33;
 }
 
 .settings-profile {
@@ -88,7 +88,7 @@
   padding: 1.5rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 軽い影で浮かせる */
   margin-bottom: 2rem;
-  border-bottom: 2px solid #0FAFAA; /* リーフグリーンの印象的な下線 */
+  border-bottom: 2px solid #0d9c33; /* リーフグリーンの印象的な下線 */
 }
 
 .page-title-bar h1 {

@@ -3,7 +3,7 @@
   margin: 60px auto;
   padding: 2rem;
   border-radius: 12px;
-  background-color: #f5fefe;
+  background-color: #fcfefc;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -19,7 +19,7 @@
 .submit-button {
   margin-top: 1rem;
   padding: 0.7rem 2rem;
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   border: none;
   border-radius: 6px;
@@ -27,7 +27,7 @@
 }
 
 .submit-button:hover {
-  background-color: #0c9999;
+  background-color: #138b084c;
 }
 
 .back-button {

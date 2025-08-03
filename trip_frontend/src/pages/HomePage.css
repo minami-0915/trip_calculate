@@ -25,7 +25,7 @@
 .add-event-btn {
   margin-top: 1rem;
   padding: 10px 16px;
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   border: none;
   border-radius: 8px;
@@ -36,7 +36,7 @@
 }
 
 .add-event-btn:hover {
-  background-color: #0c8f8f;
+  background-color: #0d9c3387;
 }
 
 /* 日ごとの予定リスト表示 */
@@ -57,7 +57,7 @@
 }
 
 .event-item {
-  background-color: #e0f7f9;
+  background-color: #138b081c;
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 0.8rem;
@@ -120,12 +120,12 @@
 }
 
 .modal button:first-of-type {
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
 }
 
 .modal button:first-of-type:hover {
-  background-color: #0c8f8f;
+  background-color: #078e2b6a;
 }
 
 .modal .cancel-btn {

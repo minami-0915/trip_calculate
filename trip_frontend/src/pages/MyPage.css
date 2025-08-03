@@ -19,7 +19,7 @@
   padding: 0.5rem 1rem;
   margin-left: 10px;
   border: none;
-  background-color: #0FAFAA;
+  background-color: #0d9c33;
   color: white;
   border-radius: 6px;
   cursor: pointer;
@@ -27,7 +27,7 @@
 }
 
 .group-form button:hover {
-  background-color: #0c9999;
+  background-color: #0d9c33a6;
 }
 
 /* グループカード全体を整列・左右に配置 */
@@ -55,19 +55,4 @@
   text-align: center;
   font-weight: bold;
   cursor: pointer;
-}
-
-/* 削除ボタン（赤系） */
-.delete-button {
-  background-color: #fa6482 !important;
-  color: white !important;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.delete-button:hover {
-  background-color: #e53e61 !important;
 }
